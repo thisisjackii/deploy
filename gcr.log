@@ -1,0 +1,328 @@
+Welcome to the Google Cloud SDK! Run "gcloud -h" to get the list of available commands.
+---
+
+D:\Programs\Google\Cloud SDK>cd D:\Documents\Riset\pm2022\deploy
+
+D:\Documents\Riset\pm2022\deploy>dir
+ Volume in drive D is DATA
+ Volume Serial Number is 92B6-BEAB
+
+ Directory of D:\Documents\Riset\pm2022\deploy
+
+11/09/2022  13:52    <DIR>          .
+11/09/2022  11:37    <DIR>          ..
+11/09/2022  12:16                83 .dockerignore
+11/09/2022  12:17               805 Dockerfile
+11/09/2022  13:52             1.216 main.py
+11/09/2022  12:45    <DIR>          models
+11/09/2022  13:57             1.475 README.md
+11/09/2022  12:20                87 requirements.txt
+11/09/2022  12:41           107.983 training_data.spacy
+               6 File(s)        111.649 bytes
+               3 Dir(s)  131.185.868.800 bytes free
+
+D:\Documents\Riset\pm2022\deploy>gcloud builds submit --tag gcr.io/ilt4-gcf-fizzbuzz/index
+ERROR: (gcloud.builds.submit) There was a problem refreshing your current auth tokens: ('invalid_grant: Bad Request', {'error': 'invalid_grant', 'error_description': 'Bad Request'})
+Please run:
+
+  $ gcloud auth login
+
+to obtain new credentials.
+
+If you have already logged in with a different account:
+
+    $ gcloud config set account ACCOUNT
+
+to select an already authenticated account to use.
+
+D:\Documents\Riset\pm2022\deploy>gcloud auth login
+Your browser has been opened to visit:
+
+    https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=32555940559.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Flocalhost%3A8085%2F&scope=openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fappengine.admin+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcompute+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Faccounts.reauth&state=eGIu8yTHHcWFA4sC0jdALj54dNFNuA&access_type=offline&code_challenge=yz7mWMxdB-t1u1pjTM7Sag0WopUxzKRo41pORbEukSM&code_challenge_method=S256
+
+
+You are now logged in as [klmnopqq@gmail.com].
+Your current project is [decent-essence-335514].  You can change this setting by running:
+  $ gcloud config set project PROJECT_ID
+
+
+Updates are available for some Cloud SDK components.  To install them,
+please run:
+  $ gcloud components update
+
+
+
+To take a quick anonymous survey, run:
+  $ gcloud survey
+
+
+D:\Documents\Riset\pm2022\deploy>gcloud config set project ilt4-gcf-fizzbuzz
+Updated property [core/project].
+
+D:\Documents\Riset\pm2022\deploy>gcloud components update
+To help improve the quality of this product, we collect anonymized usage data and anonymized stacktraces when crashes
+are encountered; additional information is available at <https://cloud.google.com/sdk/usage-statistics>. This data is
+handled in accordance with our privacy policy <https://cloud.google.com/terms/cloud-privacy-notice>. You may choose to
+opt in this collection now (by choosing 'Y' at the below prompt), or at any time in the future by running the following
+command:
+
+    gcloud config set disable_usage_reporting false
+
+Do you want to opt-in (y/N)?  n
+
+Beginning update. This process may take several minutes.
+
+Restarting command:
+  $ gcloud components update
+
+
+D:\Documents\Riset\pm2022\deploy>gcloud builds submit --tag gcr.io/ilt4-gcf-fizzbuzz/index
+Creating temporary tarball archive of 32 file(s) totalling 15.0 MiB before compression.
+Uploading tarball of [.] to [gs://ilt4-gcf-fizzbuzz_cloudbuild/source/1662896213.618614-f30c67adf0754cd3a0c76ee14e8de17e.tgz]
+Created [https://cloudbuild.googleapis.com/v1/projects/ilt4-gcf-fizzbuzz/locations/global/builds/f90aedff-fde0-4560-8021-67b547d51323].
+Logs are available at [https://console.cloud.google.com/cloud-build/builds/f90aedff-fde0-4560-8021-67b547d51323?project=537281002546].
+------------------------------------------------- REMOTE BUILD OUTPUT --------------------------------------------------
+starting build "f90aedff-fde0-4560-8021-67b547d51323"
+
+FETCHSOURCE
+Fetching storage object: gs://ilt4-gcf-fizzbuzz_cloudbuild/source/1662896213.618614-f30c67adf0754cd3a0c76ee14e8de17e.tgz#1662896236424340
+Copying gs://ilt4-gcf-fizzbuzz_cloudbuild/source/1662896213.618614-f30c67adf0754cd3a0c76ee14e8de17e.tgz#1662896236424340...
+/ [1 files][ 12.4 MiB/ 12.4 MiB]
+Operation completed over 1 objects/12.4 MiB.
+BUILD
+Already have image (with digest): gcr.io/cloud-builders/docker
+Sending build context to Docker daemon  15.78MB
+Step 1/7 : FROM python:3.7-slim
+3.7-slim: Pulling from library/python
+7a6db449b51b: Already exists
+e238bceb2957: Pulling fs layer
+6a11c62e6312: Pulling fs layer
+01a9bc9da090: Pulling fs layer
+df78409f1509: Pulling fs layer
+01a9bc9da090: Verifying Checksum
+01a9bc9da090: Download complete
+e238bceb2957: Download complete
+df78409f1509: Verifying Checksum
+df78409f1509: Download complete
+6a11c62e6312: Verifying Checksum
+6a11c62e6312: Download complete
+e238bceb2957: Pull complete
+6a11c62e6312: Pull complete
+01a9bc9da090: Pull complete
+df78409f1509: Pull complete
+Digest: sha256:c7325f0e7a9b3c5a4433e715e469c8174857a49bb6020879bfb889085a4f8673
+Status: Downloaded newer image for python:3.7-slim
+ ---> b7d15243edf1
+Step 2/7 : ENV PYTHONUNBUFFERED True
+ ---> Running in f9a7b437f2f2
+Removing intermediate container f9a7b437f2f2
+ ---> edb388cd7d33
+Step 3/7 : ENV APP_HOME /app
+ ---> Running in 465400273ec1
+Removing intermediate container 465400273ec1
+ ---> 73a42ab369ed
+Step 4/7 : WORKDIR $APP_HOME
+ ---> Running in 511fd19a3b08
+Removing intermediate container 511fd19a3b08
+ ---> d46d3ed60103
+Step 5/7 : COPY . ./
+ ---> 8865de5c55a3
+Step 6/7 : RUN pip install -r requirements.txt
+ ---> Running in f7384dd6e572
+Collecting spacy==3.4.1
+  Downloading spacy-3.4.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (6.3 MB)
+     ???????????????????????????????????????? 6.3/6.3 MB 39.5 MB/s eta 0:00:00
+Collecting spacy-legacy==3.0.10
+  Downloading spacy_legacy-3.0.10-py2.py3-none-any.whl (21 kB)
+Collecting spacy-loggers==1.0.3
+  Downloading spacy_loggers-1.0.3-py3-none-any.whl (9.3 kB)
+Collecting tqdm==4.64.0
+  Downloading tqdm-4.64.0-py2.py3-none-any.whl (78 kB)
+     ???????????????????????????????????????? 78.4/78.4 KB 13.2 MB/s eta 0:00:00
+Collecting Flask
+  Downloading Flask-2.2.2-py3-none-any.whl (101 kB)
+     ?????????????????????????????????????? 101.5/101.5 KB 16.5 MB/s eta 0:00:00
+Collecting gunicorn
+  Downloading gunicorn-20.1.0-py3-none-any.whl (79 kB)
+     ???????????????????????????????????????? 79.5/79.5 KB 13.6 MB/s eta 0:00:00
+Collecting numpy>=1.15.0
+  Downloading numpy-1.21.6-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7 MB)
+     ???????????????????????????????????????? 15.7/15.7 MB 37.9 MB/s eta 0:00:00
+Collecting cymem<2.1.0,>=2.0.2
+  Downloading cymem-2.0.6-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (35 kB)
+Collecting jinja2
+  Downloading Jinja2-3.1.2-py3-none-any.whl (133 kB)
+     ?????????????????????????????????????? 133.1/133.1 KB 19.0 MB/s eta 0:00:00
+Collecting typer<0.5.0,>=0.3.0
+  Downloading typer-0.4.2-py3-none-any.whl (27 kB)
+Collecting wasabi<1.1.0,>=0.9.1
+  Downloading wasabi-0.10.1-py3-none-any.whl (26 kB)
+Collecting pydantic!=1.8,!=1.8.1,<1.10.0,>=1.7.4
+  Downloading pydantic-1.9.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.1 MB)
+     ???????????????????????????????????????? 11.1/11.1 MB 53.6 MB/s eta 0:00:00
+Collecting thinc<8.2.0,>=8.1.0
+  Downloading thinc-8.1.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (803 kB)
+     ?????????????????????????????????????? 803.9/803.9 KB 54.9 MB/s eta 0:00:00
+Collecting packaging>=20.0
+  Downloading packaging-21.3-py3-none-any.whl (40 kB)
+     ???????????????????????????????????????? 40.8/40.8 KB 6.8 MB/s eta 0:00:00
+Collecting srsly<3.0.0,>=2.4.3
+  Downloading srsly-2.4.4-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+     ?????????????????????????????????????? 458.8/458.8 KB 42.5 MB/s eta 0:00:00
+Collecting catalogue<2.1.0,>=2.0.6
+  Downloading catalogue-2.0.8-py3-none-any.whl (17 kB)
+Collecting murmurhash<1.1.0,>=0.28.0
+  Downloading murmurhash-1.0.8-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (21 kB)
+Collecting preshed<3.1.0,>=3.0.2
+  Downloading preshed-3.0.7-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (126 kB)
+     ?????????????????????????????????????? 126.6/126.6 KB 19.6 MB/s eta 0:00:00
+Collecting typing-extensions<4.2.0,>=3.7.4
+  Downloading typing_extensions-4.1.1-py3-none-any.whl (26 kB)
+Collecting requests<3.0.0,>=2.13.0
+  Downloading requests-2.28.1-py3-none-any.whl (62 kB)
+     ???????????????????????????????????????? 62.8/62.8 KB 10.3 MB/s eta 0:00:00
+Collecting pathy>=0.3.5
+  Downloading pathy-0.6.2-py3-none-any.whl (42 kB)
+     ???????????????????????????????????????? 42.8/42.8 KB 7.5 MB/s eta 0:00:00
+Requirement already satisfied: setuptools in /usr/local/lib/python3.7/site-packages (from spacy==3.4.1->-r requirements.txt (line 1)) (57.5.0)
+Collecting langcodes<4.0.0,>=3.2.0
+  Downloading langcodes-3.3.0-py3-none-any.whl (181 kB)
+     ?????????????????????????????????????? 181.6/181.6 KB 25.6 MB/s eta 0:00:00
+Collecting Werkzeug>=2.2.2
+  Downloading Werkzeug-2.2.2-py3-none-any.whl (232 kB)
+     ?????????????????????????????????????? 232.7/232.7 KB 32.7 MB/s eta 0:00:00
+Collecting importlib-metadata>=3.6.0
+  Downloading importlib_metadata-4.12.0-py3-none-any.whl (21 kB)
+Collecting click>=8.0
+  Downloading click-8.1.3-py3-none-any.whl (96 kB)
+     ???????????????????????????????????????? 96.6/96.6 KB 14.6 MB/s eta 0:00:00
+Collecting itsdangerous>=2.0
+  Downloading itsdangerous-2.1.2-py3-none-any.whl (15 kB)
+Collecting zipp>=0.5
+  Downloading zipp-3.8.1-py3-none-any.whl (5.6 kB)
+Collecting MarkupSafe>=2.0
+  Downloading MarkupSafe-2.1.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Collecting pyparsing!=3.0.5,>=2.0.2
+  Downloading pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     ???????????????????????????????????????? 98.3/98.3 KB 15.8 MB/s eta 0:00:00
+Collecting smart-open<6.0.0,>=5.2.1
+  Downloading smart_open-5.2.1-py3-none-any.whl (58 kB)
+     ???????????????????????????????????????? 58.6/58.6 KB 10.5 MB/s eta 0:00:00
+Collecting certifi>=2017.4.17
+  Downloading certifi-2022.6.15.1-py3-none-any.whl (160 kB)
+     ?????????????????????????????????????? 160.4/160.4 KB 23.5 MB/s eta 0:00:00
+Collecting charset-normalizer<3,>=2
+  Downloading charset_normalizer-2.1.1-py3-none-any.whl (39 kB)
+Collecting idna<4,>=2.5
+  Downloading idna-3.3-py3-none-any.whl (61 kB)
+     ???????????????????????????????????????? 61.2/61.2 KB 8.5 MB/s eta 0:00:00
+Collecting urllib3<1.27,>=1.21.1
+  Downloading urllib3-1.26.12-py2.py3-none-any.whl (140 kB)
+     ?????????????????????????????????????? 140.4/140.4 KB 19.4 MB/s eta 0:00:00
+Collecting confection<1.0.0,>=0.0.1
+  Downloading confection-0.0.1-py3-none-any.whl (32 kB)
+Collecting blis<0.10.0,>=0.7.8
+  Downloading blis-0.9.1-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (7.8 MB)
+     ???????????????????????????????????????? 7.8/7.8 MB 43.3 MB/s eta 0:00:00
+Installing collected packages: wasabi, cymem, zipp, urllib3, typing-extensions, tqdm, spacy-loggers, spacy-legacy, smart-open, pyparsing, numpy, murmurhash, MarkupSafe, langcodes, itsdangerous, idna, gunicorn, charset-normalizer, certifi, Werkzeug, requests, pydantic, preshed, packaging, jinja2, importlib-metadata, catalogue, blis, srsly, click, typer, Flask, confection, thinc, pathy, spacy
+Successfully installed Flask-2.2.2 MarkupSafe-2.1.1 Werkzeug-2.2.2 blis-0.9.1 catalogue-2.0.8 certifi-2022.6.15.1 charset-normalizer-2.1.1 click-8.1.3 confection-0.0.1 cymem-2.0.6 gunicorn-20.1.0 idna-3.3 importlib-metadata-4.12.0 itsdangerous-2.1.2 jinja2-3.1.2 langcodes-3.3.0 murmurhash-1.0.8 numpy-1.21.6 packaging-21.3 pathy-0.6.2 preshed-3.0.7 pydantic-1.9.2 pyparsing-3.0.9 requests-2.28.1 smart-open-5.2.1 spacy-3.4.1 spacy-legacy-3.0.10 spacy-loggers-1.0.3 srsly-2.4.4 thinc-8.1.1 tqdm-4.64.0 typer-0.4.2 typing-extensions-4.1.1 urllib3-1.26.12 wasabi-0.10.1 zipp-3.8.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+WARNING: You are using pip version 22.0.4; however, version 22.2.2 is available.
+You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+Removing intermediate container f7384dd6e572
+ ---> 6688fc4861b3
+Step 7/7 : CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 main:app
+ ---> Running in afe585c39a77
+Removing intermediate container afe585c39a77
+ ---> b593003adb7c
+Successfully built b593003adb7c
+Successfully tagged gcr.io/ilt4-gcf-fizzbuzz/index:latest
+PUSH
+Pushing gcr.io/ilt4-gcf-fizzbuzz/index
+The push refers to repository [gcr.io/ilt4-gcf-fizzbuzz/index]
+9fdf8226975b: Preparing
+541da99297e3: Preparing
+d83564df17df: Preparing
+4eb87b42cc7f: Preparing
+2ee487586c82: Preparing
+d1e34c37a194: Preparing
+630337cfb78d: Preparing
+6485bed63627: Preparing
+630337cfb78d: Waiting
+6485bed63627: Waiting
+d1e34c37a194: Waiting
+4eb87b42cc7f: Layer already exists
+2ee487586c82: Layer already exists
+d1e34c37a194: Layer already exists
+630337cfb78d: Layer already exists
+6485bed63627: Layer already exists
+d83564df17df: Pushed
+541da99297e3: Pushed
+9fdf8226975b: Pushed
+latest: digest: sha256:edbd81e14672090d21066ddacbbf9a69b8fb590b3d679231ad3c97af14c680ce size: 2001
+DONE
+------------------------------------------------------------------------------------------------------------------------
+ID                                    CREATE_TIME                DURATION  SOURCE
+                                                    IMAGES                                    STATUS
+f90aedff-fde0-4560-8021-67b547d51323  2022-09-11T11:37:17+00:00  53S       gs://ilt4-gcf-fizzbuzz_cloudbuild/source/1662896213.618614-f30c67adf0754cd3a0c76ee14e8de17e.tgz  gcr.io/ilt4-gcf-fizzbuzz/index (+1 more)  SUCCESS
+
+D:\Documents\Riset\pm2022\deploy>gcloud run deploy --image gcr.io/ilt4-gcf-fizzbuzz/index --platform managed
+Service name (index):  ner_tanikota
+ERROR: (gcloud.run.deploy) Invalid resource name [ner_tanikota]. The name must use only lowercase alphanumeric characters and dashes, cannot begin or end with a dash, and cannot be longer than 63 characters.
+
+D:\Documents\Riset\pm2022\deploy>gcloud run deploy --image gcr.io/ilt4-gcf-fizzbuzz/index --platform managed
+Service name (index):  nertanikota
+Please specify a region:
+ [1] asia-east1
+ [2] asia-east2
+ [3] asia-northeast1
+ [4] asia-northeast2
+ [5] asia-northeast3
+ [6] asia-south1
+ [7] asia-south2
+ [8] asia-southeast1
+ [9] asia-southeast2
+ [10] australia-southeast1
+ [11] australia-southeast2
+ [12] europe-central2
+ [13] europe-north1
+ [14] europe-southwest1
+ [15] europe-west1
+ [16] europe-west2
+ [17] europe-west3
+ [18] europe-west4
+ [19] europe-west6
+ [20] europe-west8
+ [21] europe-west9
+ [22] me-west1
+ [23] northamerica-northeast1
+ [24] northamerica-northeast2
+ [25] southamerica-east1
+ [26] southamerica-west1
+ [27] us-central1
+ [28] us-east1
+ [29] us-east4
+ [30] us-east5
+ [31] us-south1
+ [32] us-west1
+ [33] us-west2
+ [34] us-west3
+ [35] us-west4
+ [36] cancel
+Please enter your numeric choice:  9
+
+To make this the default region, run `gcloud config set run/region asia-southeast2`.
+
+Allow unauthenticated invocations to [nertanikota] (y/N)?  y
+
+Deploying container to Cloud Run service [nertanikota] in project [ilt4-gcf-fizzbuzz] region [asia-southeast2]
+OK Deploying new service... Done.
+  OK Creating Revision... Deploying Revision.
+  OK Routing traffic...
+  OK Setting IAM Policy...
+Done.
+Service [nertanikota] revision [nertanikota-00001-xin] has been deployed and is serving 100 percent of traffic.
+Service URL: https://nertanikota-zrg6maqo4q-et.a.run.app
+
+D:\Documents\Riset\pm2022\deploy>gcloud auth print-identity-token
+eyJhbGciOiJSUzI1NiIsImtpZCI6ImNhYWJmNjkwODE5MTYxNmE5MDhhMTM4OTIyMGE5NzViM2MwZmJjYTEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzMjU1NTk0MDU1OS5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsImF1ZCI6IjMyNTU1OTQwNTU5LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTAyMTI4MTg4NzM0NjY3NTYwMjE5IiwiZW1haWwiOiJrbG1ub3BxcUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiYXRfaGFzaCI6IkdRaG04RjlNSTFySU5NM0Z5eXR6YnciLCJpYXQiOjE2NjI4OTg3NjIsImV4cCI6MTY2MjkwMjM2Mn0.f1Lqcr1h5TBKXL6VJJmLeJNgaiFe5Dk-xKsLQdHmVga-I1cIzJVZAs1sN_1p_kci4YYAGBJTDDdgakVVPD1tKgKkoGNdzRwBzbfj-o2gsSHdDFW5vF-fBGkqPRCuSDOl1LSPymRqup6Ve-7ZpgO0wPaupO9W3e-YKW2OxvVBairYwIAb-DaAgMv5-Xgm8YCyFTW61NvWaBGvOOUI1oqQzzct3h4dondlUkqGvthJXHKe7qi1xCnR_i9P8u5Nt7boQEkM5a5uKCFxRP2nVFslpjdzSbsdPv9cpbSc-afDJIcnlHiFhgO00iS7pn95q8SgqYW9CHfOqr1P0kNaEzz5DA

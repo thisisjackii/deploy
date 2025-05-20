@@ -1,0 +1,66 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: nertanikota
+  namespace: "537281002546"
+  selfLink: /apis/serving.knative.dev/v1/namespaces/537281002546/services/nertanikota
+  uid: 788ddea5-0adf-4e8b-b3b4-1bdc5564f275
+  resourceVersion: AAXoZUFuGeY
+  generation: 1
+  creationTimestamp: "2022-09-11T11:39:32.988710Z"
+  labels:
+    cloud.googleapis.com/location: asia-southeast2
+  annotations:
+    run.googleapis.com/client-name: gcloud
+    serving.knative.dev/creator: klmnopqq@gmail.com
+    serving.knative.dev/lastModifier: klmnopqq@gmail.com
+    client.knative.dev/user-image: gcr.io/ilt4-gcf-fizzbuzz/index
+    run.googleapis.com/client-version: 367.0.0
+    run.googleapis.com/ingress: all
+    run.googleapis.com/ingress-status: all
+spec:
+  template:
+    metadata:
+      name: nertanikota-00001-xin
+      annotations:
+        run.googleapis.com/client-name: gcloud
+        client.knative.dev/user-image: gcr.io/ilt4-gcf-fizzbuzz/index
+        run.googleapis.com/client-version: 367.0.0
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      containerConcurrency: 80
+      timeoutSeconds: 300
+      serviceAccountName: 537281002546-compute@developer.gserviceaccount.com
+      containers:
+        - image: gcr.io/ilt4-gcf-fizzbuzz/index
+          ports:
+            - name: http1
+              containerPort: 8080
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+  traffic:
+    - percent: 100
+      latestRevision: true
+status:
+  observedGeneration: 1
+  conditions:
+    - type: Ready
+      status: "True"
+      lastTransitionTime: "2022-09-11T11:41:09.835957Z"
+    - type: ConfigurationsReady
+      status: "True"
+      lastTransitionTime: "2022-09-11T11:41:09.794378Z"
+    - type: RoutesReady
+      status: "True"
+      lastTransitionTime: "2022-09-11T11:41:10.628838Z"
+  latestReadyRevisionName: nertanikota-00001-xin
+  latestCreatedRevisionName: nertanikota-00001-xin
+  traffic:
+    - revisionName: nertanikota-00001-xin
+      percent: 100
+      latestRevision: true
+  url: https://nertanikota-zrg6maqo4q-et.a.run.app
+  address:
+    url: https://nertanikota-zrg6maqo4q-et.a.run.app
